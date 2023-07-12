@@ -1,19 +1,16 @@
 <template>
   <section class="tv-series">
     <div class="container">
-
       <p class="section-subtitle">Best TV Series</p>
 
       <h2 class="h2 section-title">World Best TV Series</h2>
 
       <ul class="movies-list">
-
         <li>
           <div class="movie-card">
-
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/series-1.png" alt="Moon Knight movie poster">
+                <img src="images/series-1.png" alt="Moon Knight movie poster" />
               </figure>
             </a>
 
@@ -40,16 +37,14 @@
                 <data>8.6</data>
               </div>
             </div>
-
           </div>
         </li>
 
         <li>
           <div class="movie-card">
-
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/series-2.png" alt="Halo movie poster">
+                <img src="images/series-2.png" alt="Halo movie poster" />
               </figure>
             </a>
 
@@ -76,16 +71,14 @@
                 <data>8.8</data>
               </div>
             </div>
-
           </div>
         </li>
 
         <li>
           <div class="movie-card">
-
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/series-3.png" alt="Vikings: Valhalla movie poster">
+                <img src="images/series-3.png" alt="Vikings: Valhalla movie poster" />
               </figure>
             </a>
 
@@ -112,16 +105,14 @@
                 <data>8.3</data>
               </div>
             </div>
-
           </div>
         </li>
 
         <li>
           <div class="movie-card">
-
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/series-4.png" alt="Money Heist movie poster">
+                <img src="images/series-4.png" alt="Money Heist movie poster" />
               </figure>
             </a>
 
@@ -148,12 +139,9 @@
                 <data>8.3</data>
               </div>
             </div>
-
           </div>
         </li>
-
       </ul>
-
     </div>
   </section>
 </template>

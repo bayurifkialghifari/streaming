@@ -1,13 +1,11 @@
 <template>
   <section class="top-rated">
     <div class="container">
-
       <p class="section-subtitle">Online Streaming</p>
 
       <h2 class="h2 section-title">Top Rated Movies</h2>
 
       <ul class="filter-list">
-
         <li>
           <button class="filter-btn">Movies</button>
         </li>
@@ -23,17 +21,14 @@
         <li>
           <button class="filter-btn">Sports</button>
         </li>
-
       </ul>
 
       <ul class="movies-list">
-
         <li>
           <div class="movie-card">
-
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/movie-1.png" alt="Sonic the Hedgehog 2 movie poster">
+                <img src="/images/movie-1.png" alt="Sonic the Hedgehog 2 movie poster" />
               </figure>
             </a>
 
@@ -60,16 +55,14 @@
                 <data>7.8</data>
               </div>
             </div>
-
           </div>
         </li>
 
         <li>
           <div class="movie-card">
-
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/movie-2.png" alt="Morbius movie poster">
+                <img src="/images/movie-2.png" alt="Morbius movie poster" />
               </figure>
             </a>
 
@@ -96,16 +89,14 @@
                 <data>5.9</data>
               </div>
             </div>
-
           </div>
         </li>
 
         <li>
           <div class="movie-card">
-
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/movie-3.png" alt="The Adam Project movie poster">
+                <img src="/images/movie-3.png" alt="The Adam Project movie poster" />
               </figure>
             </a>
 
@@ -132,16 +123,14 @@
                 <data>7.0</data>
               </div>
             </div>
-
           </div>
         </li>
 
         <li>
           <div class="movie-card">
-
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/movie-4.png" alt="Free Guy movie poster">
+                <img src="/images/movie-4.png" alt="Free Guy movie poster" />
               </figure>
             </a>
 
@@ -168,16 +157,14 @@
                 <data>7.7</data>
               </div>
             </div>
-
           </div>
         </li>
 
         <li>
           <div class="movie-card">
-
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/movie-5.png" alt="The Batman movie poster">
+                <img src="/images/movie-5.png" alt="The Batman movie poster" />
               </figure>
             </a>
 
@@ -204,16 +191,14 @@
                 <data>7.9</data>
               </div>
             </div>
-
           </div>
         </li>
 
         <li>
           <div class="movie-card">
-
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/movie-6.png" alt="Uncharted movie poster">
+                <img src="/images/movie-6.png" alt="Uncharted movie poster" />
               </figure>
             </a>
 
@@ -240,16 +225,14 @@
                 <data>7.0</data>
               </div>
             </div>
-
           </div>
         </li>
 
         <li>
           <div class="movie-card">
-
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/movie-7.png" alt="Death on the Nile movie poster">
+                <img src="/images/movie-7.png" alt="Death on the Nile movie poster" />
               </figure>
             </a>
 
@@ -276,16 +259,14 @@
                 <data>6.5</data>
               </div>
             </div>
-
           </div>
         </li>
 
         <li>
           <div class="movie-card">
-
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/movie-8.png" alt="The King's Man movie poster">
+                <img src="/images/movie-8.png" alt="The King's Man movie poster" />
               </figure>
             </a>
 
@@ -312,12 +293,9 @@
                 <data>7.0</data>
               </div>
             </div>
-
           </div>
         </li>
-
       </ul>
-
     </div>
   </section>
 </template>
