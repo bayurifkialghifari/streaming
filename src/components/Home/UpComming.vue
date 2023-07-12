@@ -35,7 +35,7 @@
 
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
+                <img src="/images/upcoming-1.png" alt="The Northman movie poster">
               </figure>
             </a>
 
@@ -71,7 +71,7 @@
 
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/upcoming-2.png"
+                <img src="/images/upcoming-2.png"
                   alt="Doctor Strange in the Multiverse of Madness movie poster">
               </figure>
             </a>
@@ -108,7 +108,7 @@
 
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
+                <img src="/images/upcoming-3.png" alt="Memory movie poster">
               </figure>
             </a>
 
@@ -144,7 +144,7 @@
 
             <a href="./movie-details.html">
               <figure class="card-banner">
-                <img src="./assets/images/upcoming-4.png"
+                <img src="/images/upcoming-4.png"
                   alt="The Unbearable Weight of Massive Talent movie poster">
               </figure>
             </a>
