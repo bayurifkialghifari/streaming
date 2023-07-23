@@ -1,9 +1,7 @@
 <script setup>
   import Hero from '../components/Home/Hero.vue'
-  import UpComming from '../components/Home/UpComming.vue'
-  import Service from '../components/Home/Service.vue'
-  import TopRated from '../components/Home/TopRated.vue'
   import Series from '../components/Home/Series.vue'
+  import SERIES_TYPE from '../constants/series.constant.js'
 </script>
 <template>
   <main>
@@ -13,21 +11,13 @@
       -->
       <Hero />
       <!-- 
-        - #UPCOMING
+        - #ONGOING
       -->
-      <UpComming />
+      <Series :type="SERIES_TYPE.ONGOING" />
       <!-- 
-        - #SERVICE
+        - #COMPLETE
       -->
-      <Service />
-      <!-- 
-        - #TOP RATED
-      -->
-      <TopRated />
-      <!-- 
-        - #TV SERIES
-      -->
-      <Series />
+      <Series :type="SERIES_TYPE.COMPLETED" />
       <!-- 
         - #CTA
       -->

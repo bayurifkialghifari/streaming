@@ -1,146 +1,62 @@
-<template>
-  <section class="tv-series">
-    <div class="container">
-      <p class="section-subtitle">Best TV Series</p>
+<script setup>
+  import axios from 'axios'
+  import ListSeries from './ListSeries.vue'
+  import Loading from 'vue-loading-overlay'
+  import 'vue-loading-overlay/dist/css/index.css'
+  import { ref, defineProps, onMounted } from 'vue'
+  import SERIES_TYPE from '../../constants/series.constant.js'
+  
+  // Get type from props
+  const { type } = defineProps({
+    type: {
+      type: String,
+      required: true,
+    },
+  })
 
-      <h2 class="h2 section-title">World Best TV Series</h2>
+  // Refs
+  const series = ref([])
+  const subTitle = ref('')
+  const isLoading = ref(true)
+  const url = ref('')
+
+  // Check if type is ongoing or completed
+  if (type === SERIES_TYPE.ONGOING) {
+    url.value = 'https://anime-scraper-six.vercel.app/otakudesu/v1/ongoing'
+    subTitle.value = 'Ongoing'
+  } else {
+    url.value = 'https://anime-scraper-six.vercel.app/otakudesu/v1/complete'
+    subTitle.value = 'Completed'
+  }
+
+  // Fetch data
+  onMounted(() => {
+    const getSeries = axios.get(url.value)
+      .then(res => {
+        isLoading.value = false
+        series.value = res.data.data
+        series.value = series.value.slice(0, 8)
+      })
+  })
+</script>
+<template>
+  <section :class="type === SERIES_TYPE.ONGOING ? 'tv-series' : 'top-rated'" class="vl-parent">
+    <Loading v-model:active="isLoading" :is-full-page="false" />
+    <div class="container">
+      <p class="section-subtitle">
+        {{ subTitle }}
+      </p>
+
+      <h2 class="h2 section-title">
+        Anime
+      </h2>
 
       <ul class="movies-list">
-        <li>
-          <div class="movie-card">
-            <a href="./movie-details.html">
-              <figure class="card-banner">
-                <img src="images/series-1.png" alt="Moon Knight movie poster" />
-              </figure>
-            </a>
-
-            <div class="title-wrapper">
-              <a href="./movie-details.html">
-                <h3 class="card-title">Moon Knight</h3>
-              </a>
-
-              <time datetime="2022">2022</time>
-            </div>
-
-            <div class="card-meta">
-              <div class="badge badge-outline">2K</div>
-
-              <div class="duration">
-                <ion-icon name="time-outline"></ion-icon>
-
-                <time datetime="PT47M">47 min</time>
-              </div>
-
-              <div class="rating">
-                <ion-icon name="star"></ion-icon>
-
-                <data>8.6</data>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="movie-card">
-            <a href="./movie-details.html">
-              <figure class="card-banner">
-                <img src="images/series-2.png" alt="Halo movie poster" />
-              </figure>
-            </a>
-
-            <div class="title-wrapper">
-              <a href="./movie-details.html">
-                <h3 class="card-title">Halo</h3>
-              </a>
-
-              <time datetime="2022">2022</time>
-            </div>
-
-            <div class="card-meta">
-              <div class="badge badge-outline">2K</div>
-
-              <div class="duration">
-                <ion-icon name="time-outline"></ion-icon>
-
-                <time datetime="PT59M">59 min</time>
-              </div>
-
-              <div class="rating">
-                <ion-icon name="star"></ion-icon>
-
-                <data>8.8</data>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="movie-card">
-            <a href="./movie-details.html">
-              <figure class="card-banner">
-                <img src="images/series-3.png" alt="Vikings: Valhalla movie poster" />
-              </figure>
-            </a>
-
-            <div class="title-wrapper">
-              <a href="./movie-details.html">
-                <h3 class="card-title">Vikings: Valhalla</h3>
-              </a>
-
-              <time datetime="2022">2022</time>
-            </div>
-
-            <div class="card-meta">
-              <div class="badge badge-outline">2K</div>
-
-              <div class="duration">
-                <ion-icon name="time-outline"></ion-icon>
-
-                <time datetime="PT51M">51 min</time>
-              </div>
-
-              <div class="rating">
-                <ion-icon name="star"></ion-icon>
-
-                <data>8.3</data>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="movie-card">
-            <a href="./movie-details.html">
-              <figure class="card-banner">
-                <img src="images/series-4.png" alt="Money Heist movie poster" />
-              </figure>
-            </a>
-
-            <div class="title-wrapper">
-              <a href="./movie-details.html">
-                <h3 class="card-title">Money Heist</h3>
-              </a>
-
-              <time datetime="2017">2017</time>
-            </div>
-
-            <div class="card-meta">
-              <div class="badge badge-outline">4K</div>
-
-              <div class="duration">
-                <ion-icon name="time-outline"></ion-icon>
-
-                <time datetime="PT70M">70 min</time>
-              </div>
-
-              <div class="rating">
-                <ion-icon name="star"></ion-icon>
-
-                <data>8.3</data>
-              </div>
-            </div>
-          </div>
-        </li>
+        <ListSeries 
+          v-for="(item, index) in series"
+          :detail="item"
+          :key="index" 
+        />
       </ul>
     </div>
   </section>
