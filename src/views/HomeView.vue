@@ -1,7 +1,7 @@
 <script setup>
-import Hero from '../components/Home/Hero.vue'
-import Series from '../components/Home/Series.vue'
-import SERIES_TYPE from '../constants/series.constant.js'
+import Hero from '@/components/Home/Hero.vue'
+import Series from '@/components/Home/Series.vue'
+import SERIES_TYPE from '@/constants/series.constant.js'
 </script>
 <template>
   <main>

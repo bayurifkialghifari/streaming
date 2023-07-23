@@ -1,10 +1,10 @@
 <script setup>
-import axios from 'axios'
+import useSWRV from 'swrv'
+import LocalStorageCache from 'swrv/dist/cache/adapters/localStorage'
+import { getSeries } from '@/helpers/api/series.js'
 import ListSeries from './ListSeries.vue'
-import Loading from 'vue-loading-overlay'
-import 'vue-loading-overlay/dist/css/index.css'
-import { ref, defineProps, onMounted } from 'vue'
-import SERIES_TYPE from '../../constants/series.constant.js'
+import { ref, defineProps, watch } from 'vue'
+import SERIES_TYPE from '@/constants/series.constant.js'
 
 // Get type and location from props
 const { type, location } = defineProps({
@@ -19,36 +19,28 @@ const { type, location } = defineProps({
 })
 
 // Refs
-const series = ref([])
 const subTitle = ref('')
-const isLoading = ref(true)
-const url = ref('')
 
 // Check if type is ongoing or completed
-if (type === SERIES_TYPE.ONGOING) {
-  url.value = 'https://anime-scraper-six.vercel.app/otakudesu/v1/ongoing'
-  subTitle.value = 'Ongoing'
-} else {
-  url.value = 'https://anime-scraper-six.vercel.app/otakudesu/v1/complete'
-  subTitle.value = 'Completed'
-}
+subTitle.value = type === SERIES_TYPE.ONGOING ? 'Ongoing' : 'Completed'
+const key = type === SERIES_TYPE.ONGOING ? 'ongoing' : 'complete'
 
 // Fetch data
-onMounted(() => {
-  axios.get(url.value)
-    .then(res => {
-      isLoading.value = false
-      series.value = res.data.data
+const { data: series } = useSWRV(key, getSeries, {
+  cache: new LocalStorageCache(),
+  revalidateOnFocus: false,
+  revalidateOnReconnect: false,
+})
 
-      if (location === 'home') {
-        series.value = series.value.slice(0, 10)
-      }
-    })
+watch(series, () => {
+  // Limit 10
+  if (location === 'home') {
+    series.value = series.value.slice(0, 10)
+  }
 })
 </script>
 <template>
-  <section :class="type === SERIES_TYPE.ONGOING ? 'tv-series' : 'top-rated'" class="vl-parent">
-    <Loading v-model:active="isLoading" :is-full-page="false" />
+  <section :class="type === SERIES_TYPE.ONGOING ? 'tv-series' : 'top-rated'">
     <div class="container">
       <p class="section-subtitle">
         {{ subTitle }}
