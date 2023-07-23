@@ -28,8 +28,6 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
-
-
 </script>
 <template>
   <header class="header" data-header :class="headerClass">

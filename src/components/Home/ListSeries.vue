@@ -1,11 +1,11 @@
 <script setup>
-  // Get detail from props
-  const { detail } = defineProps({
-    detail: {
-      type: Object,
-      required: true,
-    },
-  })
+// Get detail from props
+const { detail } = defineProps({
+  detail: {
+    type: Object,
+    required: true,
+  },
+})
 </script>
 <template>
   <li>

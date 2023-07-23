@@ -29,7 +29,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = `Stream | ${to.name}`
+  document.title = `AniStream | ${to.name}`
   next()
 })
 
