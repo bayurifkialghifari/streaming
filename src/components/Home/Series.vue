@@ -6,9 +6,13 @@ import 'vue-loading-overlay/dist/css/index.css'
 import { ref, defineProps, onMounted } from 'vue'
 import SERIES_TYPE from '../../constants/series.constant.js'
 
-// Get type from props
-const { type } = defineProps({
+// Get type and location from props
+const { type, location } = defineProps({
   type: {
+    type: String,
+    required: true,
+  },
+  location: {
     type: String,
     required: true,
   },
@@ -35,7 +39,10 @@ onMounted(() => {
     .then(res => {
       isLoading.value = false
       series.value = res.data.data
-      series.value = series.value.slice(0, 8)
+
+      if (location === 'home') {
+        series.value = series.value.slice(0, 10)
+      }
     })
 })
 </script>
@@ -61,3 +68,11 @@ onMounted(() => {
     </div>
   </section>
 </template>
+
+<style>
+  @media (min-width: 1200px) {
+    .movies-list {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+</style>

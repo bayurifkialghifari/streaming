@@ -10,20 +10,20 @@ const { detail } = defineProps({
 <template>
   <li>
     <div class="movie-card">
-      <a href="./movie-details.html">
+      <RouterLink :to="detail.link">
         <figure class="card-banner">
           <img 
             :src="detail.image" 
             :alt="detail.title" />
         </figure>
-      </a>
+      </RouterLink>
 
       <div class="title-wrapper">
-        <a href="./movie-details.html">
+        <RouterLink :to="detail.link">
           <h3 class="card-title">
             {{ detail.title }}
           </h3>
-        </a>
+        </RouterLink>
 
         <time datetime="2022">2022</time>
       </div>

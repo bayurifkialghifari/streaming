@@ -10,11 +10,11 @@
           Streaming <strong>For Free</strong>.
         </h1>
 
-        <button class="btn btn-primary">
+        <RouterLink to="/on-going" class="btn btn-primary">
           <ion-icon name="arrow-forward-outline"></ion-icon>
 
           <span>Explore Now</span>
-        </button>
+        </RouterLink>
 
       </div>
 
