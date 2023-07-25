@@ -16,7 +16,7 @@
   </section>
 </template>
 
-<style>
+<style scoped>
   .not-found {
     min-height: 100vh;
     display: flex;

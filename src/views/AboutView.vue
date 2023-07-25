@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
   .about {
     min-height: 100vh;
     display: flex;

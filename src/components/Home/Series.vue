@@ -85,7 +85,7 @@ watch(series, () => {
   </section>
 </template>
 
-<style>
+<style scoped>
   .load-more {
     margin-top: 50px;
     display: flex;
