@@ -39,9 +39,4 @@ onMounted(async () => {
   .movie-detail {
     background: none;
   }
-  @media (min-width: 1200px) {
-    .movie-detail-content {
-      max-width: 900px;
-    }
-  }
 </style>

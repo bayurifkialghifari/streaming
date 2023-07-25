@@ -1,5 +1,5 @@
 <script setup>
-const { episodes } = defineProps({
+const props = defineProps({
   episodes: {
     type: Object,
     required: true,
@@ -14,7 +14,7 @@ const { episodes } = defineProps({
 
     <ul class="movies-list">
       <li 
-        v-for="(item, index) in episodes"
+        v-for="(item, index) in props.episodes"
         :key="index">
         <div class="details-actions movies-eps">
           <div class="title-wrapper">

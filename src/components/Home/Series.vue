@@ -7,7 +7,7 @@ import 'vue-loading-overlay/dist/css/index.css'
 import SERIES_TYPE from '@/constants/series.constant.js'
 
 // Get type and location from props
-const { type, location } = defineProps({
+const props = defineProps({
   type: {
     type: String,
     required: true,
@@ -17,7 +17,6 @@ const { type, location } = defineProps({
     required: true,
   },
 })
-
 // Refs
 const series = ref([])
 const subTitle = ref('')
@@ -26,8 +25,8 @@ const current = ref(1)
 
 
 // Check if type is ongoing or completed
-subTitle.value = type === SERIES_TYPE.ONGOING ? 'Ongoing' : 'Completed'
-const key = type === SERIES_TYPE.ONGOING ? 'ongoing' : 'complete'
+subTitle.value = props.type === SERIES_TYPE.ONGOING ? 'Ongoing' : 'Completed'
+const key = props.type === SERIES_TYPE.ONGOING ? 'ongoing' : 'complete'
 
 // Fetch data now
 onMounted(async () => {
@@ -49,14 +48,10 @@ const loadMore = async (page) => {
 watch(series, () => {
   // Increase current page
   current.value += 1
-  // Limit 10
-  if (location === 'home') {
-    series.value = series.value.slice(0, 10)
-  }
 })
 </script>
 <template>
-  <section :class="type === SERIES_TYPE.ONGOING ? 'tv-series' : 'top-rated'" class="vl-parent">
+  <section :class="props.type === SERIES_TYPE.ONGOING ? 'tv-series' : 'top-rated'" class="vl-parent">
     <Loading v-model:active="isLoading" :is-full-page="false" />
     <div class="container">
       <p class="section-subtitle">
@@ -67,14 +62,21 @@ watch(series, () => {
         Anime
       </h2>
 
-      <ul class="movies-list">
-        <ListSeries 
-          v-for="(item, index) in series"
-          :detail="item"
-          :key="index" 
-        />
+      <ul class="movies-list" v-if="props.location === 'home'">
+          <ListSeries 
+            v-for="(item, index) in series.splice(0, 10)"
+            :detail="item"
+            :key="index" 
+          />
       </ul>
-      <div v-if="location !== 'home'" class="load-more">
+      <ul class="movies-list" v-else>
+        <ListSeries 
+            v-for="(item, index) in series"
+            :detail="item"
+            :key="index" 
+          />
+      </ul>
+      <div v-if="props.location !== 'home'" class="load-more">
         <button @click="loadMore(current)" class="btn btn-primary">
           <ion-icon name="add-outline"></ion-icon>
 

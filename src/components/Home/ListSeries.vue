@@ -1,6 +1,6 @@
 <script setup>
 // Get detail from props
-const { detail } = defineProps({
+const props = defineProps({
   detail: {
     type: Object,
     required: true,
@@ -10,18 +10,18 @@ const { detail } = defineProps({
 <template>
   <li>
     <div class="movie-card">
-      <RouterLink :to="detail.link">
+      <RouterLink :to="props.detail.link">
         <figure class="card-banner">
           <img 
-            :src="detail.image" 
-            :alt="detail.title" />
+            :src="props.detail.image" 
+            :alt="props.detail.title" />
         </figure>
       </RouterLink>
 
       <div class="title-wrapper">
-        <RouterLink :to="detail.link">
+        <RouterLink :to="props.detail.link">
           <h3 class="card-title">
-            {{ detail.title }}
+            {{ props.detail.title }}
           </h3>
         </RouterLink>
 
@@ -37,7 +37,7 @@ const { detail } = defineProps({
           <ion-icon name="tv-outline"></ion-icon>
 
           <data>
-            {{ detail.episode }}
+            {{ props.detail.episode }}
           </data>
         </div>
 
@@ -45,7 +45,7 @@ const { detail } = defineProps({
           <ion-icon name="star"></ion-icon>
 
           <data>
-            {{ detail.rating }}            
+            {{ props.detail.rating }}            
           </data>
         </div>
       </div>

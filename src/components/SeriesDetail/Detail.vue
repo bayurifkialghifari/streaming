@@ -1,5 +1,5 @@
 <script setup>
-const { detail } = defineProps({
+const props = defineProps({
   detail: {
     type: Object,
     required: true,
@@ -12,8 +12,8 @@ const { detail } = defineProps({
     <figure class="movie-detail-banner">
 
       <img 
-        :src="detail?.fotonime" 
-        :alt="detail?.judul">
+        :src="props.detail?.fotonime" 
+        :alt="props.detail?.judul">
 
       <button class="play-btn">
         <!-- <ion-icon name="play-circle-outline"></ion-icon> -->
@@ -23,17 +23,17 @@ const { detail } = defineProps({
 
     <div class="movie-detail-content">
 
-      <p class="detail-subtitle">{{ detail?.jepang }}</p>
+      <p class="detail-subtitle">{{ props.detail?.jepang }}</p>
 
       <h1 class="h1 detail-title">
-        {{ detail?.judul }}
+        {{ props.detail?.judul }}
       </h1>
 
       <div class="meta-wrapper">
 
         <div class="badge-wrapper">
           <div class="badge badge-fill">
-            {{ detail?.status }}
+            {{ props.detail?.status }}
           </div>
         </div>
 
@@ -42,14 +42,14 @@ const { detail } = defineProps({
           <div>
             <ion-icon name="star"></ion-icon>
 
-            {{ detail?.skor }}
+            {{ props.detail?.skor }}
           </div>
 
           <div>
             <ion-icon name="calendar-outline"></ion-icon>
 
-            <time :datetime="detail?.tanggalrilis">
-              {{ detail?.tanggalrilis }}
+            <time :datetime="props.detail?.tanggalrilis">
+              {{ props.detail?.tanggalrilis }}
             </time>
           </div>
 
@@ -57,7 +57,7 @@ const { detail } = defineProps({
             <ion-icon name="time-outline"></ion-icon>
 
             <time datetime="PT115M">
-              {{ detail?.durasi }}
+              {{ props.detail?.durasi }}
             </time>
           </div>
 
@@ -65,17 +65,17 @@ const { detail } = defineProps({
 
         <div class="ganre-wrapper">
           <a href="#" 
-            v-for="(item, index) in detail?.genre?.split(', ')"
+            v-for="(item, index) in props.detail?.genre?.split(', ')"
             :key="index">
               {{ item }} 
-              {{ index != Object.keys(detail?.genre?.split(', ')).length - 1 ? ',' : '' }}
+              {{ index != Object.keys(props.detail?.genre?.split(', ')).length - 1 ? ',' : '' }}
           </a>
         </div>
         
       </div>
 
       <p class="storyline">
-        {{ detail?.sinopsis }}
+        {{ props.detail?.sinopsis }}
       </p>
 
       <div class="details-actions">
@@ -92,3 +92,10 @@ const { detail } = defineProps({
 
   </div>
 </template>
+<style scoped>
+  @media (min-width: 1200px) {
+    .movie-detail-content {
+      max-width: 900px;
+    }
+  }
+</style>
