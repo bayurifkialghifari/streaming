@@ -1,9 +1,9 @@
 <script setup>
-import useSWRV from 'swrv'
-import LocalStorageCache from 'swrv/dist/cache/adapters/localStorage'
+import { ref, watch, onMounted } from 'vue'
 import { getSeries } from '@/helpers/api/series.js'
 import ListSeries from './ListSeries.vue'
-import { ref, defineProps, watch } from 'vue'
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/css/index.css'
 import SERIES_TYPE from '@/constants/series.constant.js'
 
 // Get type and location from props
@@ -19,20 +19,36 @@ const { type, location } = defineProps({
 })
 
 // Refs
+const series = ref([])
 const subTitle = ref('')
+const isLoading = ref(true)
+const current = ref(1)
+
 
 // Check if type is ongoing or completed
 subTitle.value = type === SERIES_TYPE.ONGOING ? 'Ongoing' : 'Completed'
 const key = type === SERIES_TYPE.ONGOING ? 'ongoing' : 'complete'
 
-// Fetch data
-const { data: series } = useSWRV(key, getSeries, {
-  cache: new LocalStorageCache(),
-  revalidateOnFocus: false,
-  revalidateOnReconnect: false,
+// Fetch data now
+onMounted(async () => {
+  const data = await getSeries(key)
+
+  series.value = data
+  isLoading.value = false
 })
 
+// Load More
+const loadMore = async (page) => {
+  isLoading.value = true
+  const data = await getSeries(`${key}?page=${page}`)
+
+  series.value = [...series.value, ...data]
+  isLoading.value = false
+}
+
 watch(series, () => {
+  // Increase current page
+  current.value += 1
   // Limit 10
   if (location === 'home') {
     series.value = series.value.slice(0, 10)
@@ -40,7 +56,8 @@ watch(series, () => {
 })
 </script>
 <template>
-  <section :class="type === SERIES_TYPE.ONGOING ? 'tv-series' : 'top-rated'">
+  <section :class="type === SERIES_TYPE.ONGOING ? 'tv-series' : 'top-rated'" class="vl-parent">
+    <Loading v-model:active="isLoading" :is-full-page="false" />
     <div class="container">
       <p class="section-subtitle">
         {{ subTitle }}
@@ -57,11 +74,23 @@ watch(series, () => {
           :key="index" 
         />
       </ul>
+      <div v-if="location !== 'home'" class="load-more">
+        <button @click="loadMore(current)" class="btn btn-primary">
+          <ion-icon name="add-outline"></ion-icon>
+
+          <span>Load More</span>
+        </button>
+      </div>
     </div>
   </section>
 </template>
 
 <style>
+  .load-more {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  }
   @media (min-width: 1200px) {
     .movies-list {
       grid-template-columns: repeat(5, 1fr);
