@@ -1,7 +1,13 @@
 <script setup>
+import { watch, ref } from "vue"
+
 const props = defineProps({
   detail: {
     type: Object,
+    required: true,
+  },
+  watch_now: {
+    type: String,
     required: true,
   },
 })
@@ -80,11 +86,10 @@ const props = defineProps({
 
       <div class="details-actions">
 
-        <button class="btn btn-primary">
+        <RouterLink :to="watch_now" class="btn btn-primary">
           <ion-icon name="play"></ion-icon>
-
           <span>Watch Now</span>
-        </button>
+        </RouterLink>
 
       </div>
 
