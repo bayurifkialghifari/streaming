@@ -25,6 +25,11 @@ const router = createRouter({
       component: () => import('../views/CompletedView.vue')
     },
     {
+      path: '/search',
+      name: 'Search',
+      component: () => import('../views/SearchView.vue')
+    },
+    {
       path: '/anime/:slug',
       name: 'Anime',
       component: () => import('../views/SeriesDetailView.vue')
