@@ -1,8 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 
-const router = useRouter()
 const search = ref('')
 
 // Toggle Search
@@ -10,7 +8,7 @@ const handleSearch = (e) => {
   e.preventDefault()
 
   if (search.value != '') {
-    router.push('/search?s=' + search.value)
+    window.location = '/search?s=' + search.value
 
     search.value = ''
   }
