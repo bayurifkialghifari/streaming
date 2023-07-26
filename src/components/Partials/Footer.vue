@@ -30,11 +30,19 @@ onUnmounted(() => {
 
           <ul class="footer-list">
             <li>
-              <RouterLink to="/" class="footer-link">Home</RouterLink>
+              <RouterLink to="/" class="navbar-link">Home</RouterLink>
             </li>
 
             <li>
-              <RouterLink to="/about" class="footer-link">About</RouterLink>
+              <RouterLink to="/on-going" class="navbar-link">On Going</RouterLink>
+            </li>
+
+            <li>
+              <RouterLink to="/completed" class="navbar-link">Complete</RouterLink>
+            </li>
+
+            <li>
+              <RouterLink to="/about" class="navbar-link">About</RouterLink>
             </li>
           </ul>
         </div>
