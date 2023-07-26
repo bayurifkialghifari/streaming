@@ -1,3 +1,6 @@
+<script setup>
+import SearchBar from '@/components/SearchBar.vue'
+</script>
 <template>
   <ul class="navbar-list">
         
@@ -18,6 +21,8 @@
     </li>
 
   </ul>
+
+  <SearchBar class="hide-on-desktop" />
 
   <ul class="navbar-social-list">
 
@@ -58,5 +63,15 @@
 <style scoped>
   .router-link-exact-active {
     color: hsl(57, 97%, 45%);
+  }
+  .hide-on-desktop {
+    margin-bottom: 50px;
+  }
+  /* Hide on desktop mode show only on phone */
+  @media (min-width: 992px)
+  {
+    .hide-on-desktop {
+      display: none;
+    }
   }
 </style>

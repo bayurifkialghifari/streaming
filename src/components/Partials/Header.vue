@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
+import SearchBar from '@/components/SearchBar.vue'
 import Navigation from './Navigation.vue'
 
 const headerClass = ref('')
@@ -40,13 +41,7 @@ onUnmounted(() => {
       </RouterLink>
 
       <div class="header-actions">
-
-        <button class="search-btn">
-          <ion-icon name="search-outline"></ion-icon>
-        </button>
-
-        <button class="btn btn-primary">Sign in</button>
-
+        <SearchBar />
       </div>
 
       <button class="menu-open-btn" data-menu-open-btn @click="handleOnClick()">
