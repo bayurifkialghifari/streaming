@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { getSeries } from '@/helpers/api/series.js'
 import SeriesDetail from '@/components/SeriesDetail/Detail.vue'
@@ -20,6 +20,11 @@ onMounted(async () => {
 
   series.value = data
   isLoading.value = false
+})
+
+// Watch series
+watch(series, () => {
+  document.title += ` ${series.value?.detail?.judul}`
 })
 </script>
 <template>
